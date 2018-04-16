@@ -158,17 +158,17 @@ public:
 
 	}
 
-	void PrintFirst();
+	void PrintFirst();//蛇从左边出现到完全出现的过程
 
-	void PrintSecond();
+	void PrintSecond();//蛇从左向右移动的过程
 
-	void PrintThird();
+	void PrintThird();//蛇从接触右边到消失的过程
 
-	void PrintText();
+	void PrintText();//动画界面文字
 
-	void ClearText();
+	void ClearText();//清空动画界面文字
 
-	void Action();
+	void Action();//蛇三个动画的集合
 
 private:
 

@@ -21,19 +21,28 @@ public:
 	
 	}
 
-	void Print();
+	void Print(); //输出■
 
-	void PrintCircular();
+	void PrintCircular(); //输出●
 
-	void Clear();
+	void Clear(); //清除输出
 
-	void ChangePosition(const int x, const int y);
+	void ChangePosition(const int x, const int y);//改变坐标
 
-	bool operator== (const Point& point) { return (point.x == this->x) && (point.y == this->y); }
+	bool operator== (const Point& point) //运算符重载
+	{ 
+		return (point.x == this->x) && (point.y == this->y); 
+	}
 
-	int GetX() { return this->x; }
+	int GetX() 
+	{ 
+		return this->x; 
+	}
 
-	int GetY() { return this->y; }
+	int GetY() 
+	{ 
+		return this->y;
+	}
 
 private:
 

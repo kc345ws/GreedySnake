@@ -38,11 +38,11 @@ public:
 
 private:
 
-	int speed;
+	int speed;//默认为200
 
-	int key;
+	int key;//默认为1
 
-	int score;
+	int score;//默认为0
 
 };
 

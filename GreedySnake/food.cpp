@@ -23,13 +23,15 @@ void Food::DrawFood(Snake& csnake)//绘制食物
 
 	{
 
-		int tmp_x = rand() % 30;
+		int tmp_x = rand() % 30; //将食物范围限制在2-29内(地图大小)
 
 		int tmp_y = rand() % 30;
 
-		if (tmp_x < 2) tmp_x += 2;
+		if (tmp_x < 2) 
+			tmp_x += 2;
 
-		if (tmp_y < 2) tmp_y += 2;
+		if (tmp_y < 2) 
+			tmp_y += 2;
 
 		bool flag = false;
 
@@ -38,7 +40,7 @@ void Food::DrawFood(Snake& csnake)//绘制食物
 		{
 
 			if ((point.GetX() == tmp_x && point.GetY() == tmp_y) || (tmp_x == big_x && tmp_y == big_y)) {
-
+				//判断食物位置与蛇是否重合
 				flag = true;
 
 				break;
@@ -51,17 +53,17 @@ void Food::DrawFood(Snake& csnake)//绘制食物
 
 			continue;
 
-		x = tmp_x;
+		Food::x = tmp_x;
 
-		y = tmp_y;
+		Food::y = tmp_y;
 
-		SetCursorPosition(x, y);
+		SetCursorPosition(x, y);//设置光标位置
 
 		SetColor(13);
 
 		std::cout << "★";
 
-		++cnt;
+		++cnt;//判断吃到食物个数
 
 		cnt %= 5;
 
@@ -85,13 +87,13 @@ void Food::DrawBigFood(Snake& csnake)//绘制限时食物
 
 {
 
-	SetCursorPosition(5, 0);
+	SetCursorPosition(5, 0);//在此处打印进度条
 
-	SetColor(11);
+	SetColor(13);//设置进度条的颜色
 
-	std::cout << "------------------------------------------";//进度条
+	std::cout  <<"------------------------------------------"<<"<-限时食物进度条消失";//进度条
 
-	progress_bar = 42;
+	progress_bar = 42;//进度条大小
 
 	while (true)
 
@@ -112,7 +114,7 @@ void Food::DrawBigFood(Snake& csnake)//绘制限时食物
 		{
 
 			if ((point.GetX() == tmp_x && point.GetY() == tmp_y) || (tmp_x == x && tmp_y == y))
-
+				//判断蛇身与食物重合
 			{
 
 				flag = true;
@@ -133,9 +135,9 @@ void Food::DrawBigFood(Snake& csnake)//绘制限时食物
 
 		big_y = tmp_y;
 
-		SetCursorPosition(big_x, big_y);
+		SetCursorPosition(big_x, big_y);//限时食物的坐标
 
-		SetColor(18);
+		SetColor(18);//限时食物的颜色
 
 		std::cout << "■";
 
@@ -151,7 +153,7 @@ void Food::DrawBigFood(Snake& csnake)//绘制限时食物
 
 
 
-int Food::GetCnt()
+int Food::GetCnt()//食物次数标记
 
 {
 
@@ -169,7 +171,7 @@ void Food::FlashBigFood()//闪烁限时食物
 
 	SetColor(18);
 
-	if (flash_flag)
+	if (Food::flash_flag)
 
 	{
 
@@ -193,21 +195,22 @@ void Food::FlashBigFood()//闪烁限时食物
 
 	SetCursorPosition(26, 0);
 
-	SetColor(11);
+	SetColor(13);
 
 	for (int i = 42; i >= progress_bar; --i)//进度条缩短
 
-		std::cout << "\b \b";
+		std::cout << "\b \b"; //输出退格键
 
 	--progress_bar;
 
-	if (progress_bar == 0) {
+	if (progress_bar == 0) //限时食物消失
+	{
 
 		SetCursorPosition(big_x, big_y);
 
 		std::cout << "  ";
 
-		big_flag = false;
+		big_flag = false;//食物消失则将限时食物标记设为false
 
 		big_x = 0;
 
@@ -223,7 +226,7 @@ bool Food::GetBigFlag()
 
 {
 
-	return big_flag;
+	return Food::big_flag;//返回限时食物标记
 
 }
 
@@ -233,6 +236,6 @@ int Food::GetProgressBar()
 
 {
 
-	return progress_bar;
+	return Food::progress_bar;//返回剩余进度条，用来更新游戏分数
 
 }

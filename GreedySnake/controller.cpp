@@ -42,6 +42,7 @@ void Controller::Start()//开始界面
 
 	std::cout << "Press any key to start... ";
 
+
 	SetCursorPosition(13, 27);
 
 	system("pause");
@@ -58,7 +59,7 @@ void Controller::Select()//选择界面
 
 	SetColor(3);
 
-	SetCursorPosition(13, 26);
+	SetCursorPosition(13, 26); //光标位置
 
 	std::cout << "                          ";
 
@@ -66,8 +67,24 @@ void Controller::Select()//选择界面
 
 	std::cout << "                          ";
 
-	SetCursorPosition(6, 21);
+	SetColor(13);
+	SetCursorPosition(17, 5);
+	std::cout << "贪吃蛇游戏";  
+	SetCursorPosition(15, 6);
+	std::cout << "===================";
+	SetCursorPosition(13, 7);
+	std::cout << "         吉林大学";
+	SetCursorPosition(13, 8);
+	std::cout << "      2017级软件学院九班";
+	SetCursorPosition(13, 9);
+	std::cout<< " 陈鸿超、曹佳伟、吴丰屹制作";
+		;
 
+
+	SetColor(3);
+
+	SetCursorPosition(6, 21);
+	
 	std::cout << "请选择游戏难度：";
 
 	SetCursorPosition(6, 22);
@@ -96,7 +113,7 @@ void Controller::Select()//选择界面
 
 	SetCursorPosition(0, 31);
 
-	score = 0;
+	Controller::score = 0;//游戏分数
 
 
 
@@ -130,13 +147,12 @@ void Controller::Select()//选择界面
 
 					SetCursorPosition(27, 22);//给待选中项设置背景色
 
-					SetBackColor();
+					SetBackColor();//设置文本背景颜色
 
 					std::cout << "简单模式";
 
 
-
-					SetCursorPosition(27, 24);//将已选中项取消我背景色
+					SetCursorPosition(27, 24);//将已选中项取消背景色
 
 					SetColor(3);
 
@@ -206,7 +222,7 @@ void Controller::Select()//选择界面
 
 			{
 
-				switch (key)
+				switch (key)//key默认为1 即简单模式
 
 				{
 
@@ -294,7 +310,7 @@ void Controller::Select()//选择界面
 
 
 
-		SetCursorPosition(0, 31);//将光标置于左下角，避免关标闪烁影响游戏体验
+		SetCursorPosition(0, 31);//将光标置于左下角，避免光标闪烁影响游戏体验
 
 	}
 
@@ -304,27 +320,27 @@ void Controller::Select()//选择界面
 
 	{
 
-	case 1:
+	case 1://key默认为1
 
-		speed = 135;
+		Controller::speed = 135;
 
 		break;
 
 	case 2:
 
-		speed = 100;
+		Controller::speed = 100;
 
 		break;
 
 	case 3:
 
-		speed = 60;
+		Controller::speed = 60;
 
 		break;
 
 	case 4:
 
-		speed = 30;
+		Controller::speed = 30;
 
 		break;
 
@@ -433,14 +449,14 @@ void Controller::DrawGame()//绘制游戏界面
 int Controller::PlayGame()//游戏二级循环
 
 {
-
+	
 	/*初始化蛇和食物*/
 
 	Snake *csnake = new Snake();
 
 	Food *cfood = new Food();
 
-	SetColor(6);
+	SetColor(3);
 
 	csnake->InitSnake();
 
@@ -455,7 +471,7 @@ int Controller::PlayGame()//游戏二级循环
 	while (csnake->OverEdge() && csnake->HitItself()) //判断是否撞墙或撞到自身，即是否还有生命
 
 	{
-
+		
 		/*调出选择菜单*/
 
 		if (!csnake->ChangeDirection()) //按Esc键时
@@ -508,7 +524,7 @@ int Controller::PlayGame()//游戏二级循环
 
 		{
 
-			csnake->Move();//蛇增长
+			csnake->Move();//蛇移动并打印蛇
 
 			UpdateScore(1);//更新分数，1为分数权重
 
@@ -534,7 +550,7 @@ int Controller::PlayGame()//游戏二级循环
 
 			csnake->Move();
 
-			UpdateScore(cfood->GetProgressBar() / 5);//分数根据限时食物进度条确定
+			UpdateScore(cfood->GetProgressBar() / 5);//分数根据限时食物进度条确定,分数权重
 
 			RewriteScore();
 
@@ -584,6 +600,7 @@ int Controller::PlayGame()//游戏二级循环
 
 	}
 
+
 }
 
 
@@ -592,7 +609,7 @@ void Controller::UpdateScore(const int& tmp)//更新分数
 
 {
 
-	score += key * 10 * tmp;//所得分数根据游戏难度及传人的参数tmp确定
+	Controller::score += Controller::key * 10 * tmp;//所得分数根据游戏难度及传人的参数tmp确定
 
 }
 
@@ -610,7 +627,7 @@ void Controller::RewriteScore()//重绘分数
 
 	int bit = 0;
 
-	int tmp = score;
+	int tmp = Controller::score;
 
 	while (tmp != 0)
 
@@ -874,11 +891,11 @@ void Controller::Game()//游戏一级循环
 
 	{
 
-		Select();//选择界面
+		Controller::Select();//选择界面
 
-		DrawGame();//绘制游戏界面
+		Controller::DrawGame();//绘制游戏界面
 
-		int tmp = PlayGame();//开启游戏循环，当重新开始或退出游戏时，结束循环并返回值给tmp
+		int tmp = Controller::PlayGame();//开启游戏循环，当重新开始或退出游戏时，结束循环并返回值给tmp
 
 		if (tmp == 1) //返回值为1时重新开始游戏
 
@@ -924,7 +941,7 @@ int Controller::GameOver()//游戏结束界面
 
 	SetCursorPosition(10, 8);
 
-	std::cout << "━━━━━━━━━━━━━━━━━━━━━━";
+	std::cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
 
 	Sleep(30);
 
@@ -1006,7 +1023,7 @@ int Controller::GameOver()//游戏结束界面
 
 	SetCursorPosition(10, 21);
 
-	std::cout << "━━━━━━━━━━━━━━━━━━━━━━";
+	std::cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
 
 
 

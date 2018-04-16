@@ -16,7 +16,7 @@ void Snake::InitSnake()//初始化蛇
 
 	{
 
-		point.PrintCircular();
+		point.PrintCircular();//输出圆形
 
 	}
 
@@ -108,10 +108,10 @@ bool Snake::HitItself()//撞到自身
 
 	Point *head = new Point(snake.back().GetX(), snake.back().GetY());//获得头部坐标
 
-	for (auto& point : snake) //如果整条蛇中与蛇头不相同的坐标不等于蛇长，则意味着蛇头碰撞到自身
+	for (auto& point : Snake::snake) //如果整条蛇中与蛇头不相同的坐标不等于蛇长，则意味着蛇头碰撞到自身
 
 	{
-
+		//蛇头碰到自身后会重合
 		if (!(point == *head))
 
 			++cnt;
@@ -136,7 +136,7 @@ bool Snake::HitItself()//撞到自身
 
 
 
-bool Snake::ChangeDirection()//改变方向
+bool Snake::ChangeDirection()//改变蛇的方向
 
 {
 
@@ -160,7 +160,7 @@ bool Snake::ChangeDirection()//改变方向
 
 			{
 
-			case 72:
+			case 72://上键的assic
 
 				if (direction != Direction::DOWN)//如果方向与当前运动方向相反，无效
 
@@ -168,7 +168,7 @@ bool Snake::ChangeDirection()//改变方向
 
 				break;
 
-			case 80:
+			case 80://下键的assic
 
 				if (direction != Direction::UP)
 
@@ -176,7 +176,7 @@ bool Snake::ChangeDirection()//改变方向
 
 				break;
 
-			case 75:
+			case 75://左键的assic
 
 				if (direction != Direction::RIGHT)
 
@@ -184,7 +184,7 @@ bool Snake::ChangeDirection()//改变方向
 
 				break;
 
-			case 77:
+			case 77://右键的assic
 
 				if (direction != Direction::LEFT)
 
@@ -202,7 +202,7 @@ bool Snake::ChangeDirection()//改变方向
 
 
 
-		case 27://ESC
+		case 27://ESC assic菜单
 
 			return false;
 
@@ -211,7 +211,6 @@ bool Snake::ChangeDirection()//改变方向
 		default:
 
 			return true;
-
 
 
 		}
@@ -224,12 +223,12 @@ bool Snake::ChangeDirection()//改变方向
 
 
 
-bool Snake::GetFood(const Food& cfood)
+bool Snake::GetFood(const Food& cfood)//蛇吃到食物
 
 {
 
-	if (snake.back().GetX() == cfood.x && snake.back().GetY() == cfood.y)
-
+	if (Snake::snake.back().GetX() == cfood.x && Snake::snake.back().GetY() == cfood.y)
+		//蛇头部在容器尾部
 		return true;
 
 	else
@@ -240,7 +239,7 @@ bool Snake::GetFood(const Food& cfood)
 
 
 
-bool Snake::GetBigFood(Food& cfood)
+bool Snake::GetBigFood(Food& cfood)//蛇吃到限时食物
 
 {
 

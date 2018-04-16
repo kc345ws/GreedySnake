@@ -21,19 +21,19 @@ class Snake
 
 public:
 
-	enum Direction { UP, DOWN, LEFT, RIGHT };
+	enum Direction { UP, DOWN, LEFT, RIGHT };//方向
 
 
 
 	Snake() {
 
-		snake.emplace_back(14, 8);
+		snake.emplace_back(14, 8); //蛇出生位置
 
 		snake.emplace_back(15, 8);
 
 		snake.emplace_back(16, 8);
 
-		direction = Direction::DOWN;
+		direction = Direction::DOWN; //蛇出生移动方向
 
 	}
 
@@ -55,7 +55,7 @@ public:
 
 private:
 
-	std::deque<Point> snake;
+	std::deque<Point> snake;//蛇的容器
 
 	Direction direction;
 

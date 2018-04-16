@@ -12,7 +12,7 @@ void StartInterface::PrintFirst()//蛇从左边出现到完全出现的过程
 
 	{
 
-		point.Print();
+		point.Print();//输出方块
 
 		Sleep(speed);
 
@@ -34,15 +34,15 @@ void StartInterface::PrintSecond()//蛇从左向右移动的过程
 
 		int j = (((i - 2) % 8) < 4) ? (15 + (i - 2) % 8) : (21 - (i - 2) % 8);
 
-		startsnake.emplace_back(Point(i, j));
+		startsnake.emplace_back(Point(i, j));//将计算的下一个蛇头位置填入startsnake中
 
-		startsnake.back().Print();
+		startsnake.back().Print();//打印下一个蛇头
 
-		startsnake.front().Clear();
+		startsnake.front().Clear();//在第一个元素位置打印" "
 
-		startsnake.pop_front();
+		startsnake.pop_front();//弹出第一个后，回收空间
 
-		Sleep(speed);
+		Sleep(speed);//延迟
 
 	}
 
@@ -80,7 +80,7 @@ void StartInterface::PrintThird()//蛇从接触右边到消失的过程
 
 
 
-void StartInterface::PrintText()
+void StartInterface::PrintText()//蛇，打印蛇的文字图像
 
 {
 
@@ -98,11 +98,11 @@ void StartInterface::PrintText()
 
 
 
-void StartInterface::ClearText()
+void StartInterface::ClearText()//清除的同时将蛇文字整体向右移动一格
 
 {
 
-	for (auto& point : textsnake) //清除的同时将文字整体向右移动一格
+	for (auto& point : textsnake) 
 
 	{
 
@@ -118,7 +118,7 @@ void StartInterface::ClearText()
 
 
 
-void StartInterface::Action()
+void StartInterface::Action()//蛇三个动画的集合
 
 {
 

@@ -15,7 +15,10 @@ class Food
 
 public:
 
-	Food() : cnt(0), flash_flag(false), big_flag(false), x(0), y(0), big_x(0), big_y(0), progress_bar(0) {}
+	Food() : cnt(0), flash_flag(false), big_flag(false), x(0), y(0), big_x(0), big_y(0), progress_bar(0) 
+	{
+
+	}
 
 	void DrawFood(Snake&);
 
@@ -31,17 +34,17 @@ public:
 
 private:
 
-	int cnt;
+	int cnt; //判断吃到食物个数
 
-	bool flash_flag;//闪烁标记
+	bool flash_flag;//闪烁标记默认为false
 
-	bool big_flag;//是否有限时食物标记
+	bool big_flag;//是否有限时食物标记默认为false
 
-	int x, y;
+	int x, y;//默认为0
 
-	int big_x, big_y;
+	int big_x, big_y;//默认为0
 
-	int progress_bar;//限时食物进度条
+	int progress_bar;//限时食物进度条，默认为0
 
 	friend class Snake;
 

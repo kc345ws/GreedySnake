@@ -6,12 +6,14 @@
 
 
 
+
+
 void SetWindowSize(int cols, int lines)//设置窗口大小
 
 {
 
-	system("贪吃蛇--吉林大学");//设置窗口标题
-
+	//system("贪吃蛇--吉林大学");//设置窗口标题
+	//Sleep(10000);
 	char cmd[30];
 
 	sprintf(cmd, "mode con cols=%d lines=%d", cols * 2, lines);//一个图形占两个字符，故宽度乘以2

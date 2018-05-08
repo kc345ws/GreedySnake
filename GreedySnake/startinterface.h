@@ -1,4 +1,5 @@
-﻿#ifndef STRATINTERFACE_H
+﻿
+#ifndef STRATINTERFACE_H
 
 #define STARTINTERFACE_H
 
